@@ -1,0 +1,83 @@
+body {
+  background: #444;
+  box-sizing: border-box;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+.btn {
+  border-radius: 15px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 1rem;
+  width: 10rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  font-weight: 700;
+  width: 100%;
+}
+
+main span {
+  color: #bebebe;
+  font-size: 4rem;
+}
+
+h1 {
+  color: #fff;
+  font-size: 4.5rem;
+}
+
+h2 {
+  color: #fff;
+  font-size: 4rem;
+  text-decoration: underline;
+}
+
+form {
+  margin: 0 auto;
+}
+
+input {
+  border: none;
+  border-radius: 15px;
+  display: block;
+  font-size: 2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  width: 24rem;
+}
+
+select {
+  border-radius: 15px;
+  border: none;
+  display: block;
+  font-size: 2rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+input[type='radio'] {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 2rem;
+}
+
+.radio-text {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: #fff;
+  font-size: 2rem;
+}
+
+input[type='submit'] {
+  background-color: blue;
+  color: #fff;
+}

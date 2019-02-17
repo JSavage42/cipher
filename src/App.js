@@ -1,37 +1,57 @@
 import React, { Component } from 'react';
+import vigenere from './cipher';
+import './styles.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      plain: '',
+      text: '',
       key: '',
+      decode: false,
+      answer: 'Enter something to encrypt.',
     };
   }
 
+  // *** On submit of form
   onSubmit = e => {
+    // *** Prevent page refresh
     e.preventDefault();
-    console.log(this.state.plain + (this.state.key % 26));
+    // *** Create variable answer using the vigenere function fron ./cipher.js
+    const answer = vigenere(this.state.text, this.state.key, this.state.decode);
+    // *** Set the state key answer to the varible answer
+    this.setState({ answer });
   };
 
+  // *** Generalized onChange function.
+  // *** Takes the input's name as a variable key and sets the state to the target value.
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  render() {
-    const { plain, key } = this.state;
-    return (
-      <div className="App">
-        <h1>Vigenère Cipher</h1>
+  // *** Generalized onChecked function.
+  // *** Gets the value from the radio buttons.
+  // *** Checks value and using a ternary operator sets the state to the value to a truthy value.
+  onChecked = e => {
+    console.log(this.state);
+    const decode = e.target.value === 'true' ? true : false;
+    this.setState({ decode });
+  };
 
+  render() {
+    // *** State deconstruction
+    const { text, key, answer } = this.state;
+    return (
+      <main>
+        <h1>Vigenère Cipher</h1>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"
-            name="plain"
+            name="text"
             onChange={this.onChange}
-            value={plain}
-            placeholder="Plain"
+            value={text}
+            placeholder="Text"
           />
           <input
             type="text"
@@ -40,14 +60,30 @@ class App extends Component {
             value={key}
             placeholder="Key"
           />
-          <select name="" onChange={this.onChange}>
-            <option value="encode">Encode</option>
-            <option value="decode">Decode</option>
-          </select>
-          <input type="submit" value="Run" />
-          <input type="reset" />
+          <p className="radio-text">
+            <input
+              type="radio"
+              name="decode"
+              value={true}
+              onChange={this.onChecked}
+              defaultChecked
+            />{' '}
+            Encode
+            <input
+              type="radio"
+              name="decode"
+              value={false}
+              onChange={this.onChecked}
+            />{' '}
+            Decode
+          </p>
+          <input type="submit" value="Run" className="btn" />
+          <input type="reset" className="btn" />
         </form>
-      </div>
+        {/* *** Show Answer *** */}
+        <h2>Answer</h2>
+        <span>{answer}</span>
+      </main>
     );
   }
 }
